@@ -1,6 +1,7 @@
-﻿namespace CSharpExamProject;
-public class Class1
+﻿namespace MyRecipesLib;
+public class MyRecipesLib
 {
+
 
 }
 
