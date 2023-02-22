@@ -1,50 +1,78 @@
-﻿using System;
-namespace MyRecipesLib.Model
+﻿namespace MyRecipesLib.Model;
+
+public struct Recipe
 {
-    public struct Recipe
+    
+    public Recipe(int id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients)
     {
-        /**
-         * <summary>
-         *  The name of the recipe
-         * </summary>
-         */
-        public string Title { get; set; }
+        Id = id;
+        Title = title;
+        Description = description;
+        PreparationTime = preparationTime;
+        CookingTime = cookingTime;
+        Steps = steps;
+        Ingredients = ingredients;
+    }
+ 
+    /**
+     * <summary>
+     *     The name of the recipe
+     * </summary>
+     */
+
+    public string Title { get; set; } = "Empty Recipe";
 
 
-        /**
-         * <summary>
-         *  The description of the recipe. Can be quite long.
-         * </summary>
-         *  @TODO Use markdown for the description.
-         */
-        public string Description { get; set; }
+    /**
+     * <summary>
+     *     The description of the recipe. Can be quite long.
+     * </summary>
+     * @TODO Use markdown for the description.
+     */
+    public string Description { get; set; } = "No description";
 
-        /**
-         * <summary>
-         * How long to prepare ingredients in minutes
-         * </summary>
-         * */
-        public int PreparationTime { get; set; }
+    /**
+     * <summary>
+     *     How long to prepare ingredients in minutes
+     * </summary>
+     */
+    public int PreparationTime { get; set; } = 0;
 
-        /**
-         * <summary>
-         * How long to cook the recipe
-         * </summary>
-         */
-        public int CookingTime { get; set; }
+    /**
+     * <summary>
+     *     How long to cook the recipe
+     * </summary>
+     */
+    public int CookingTime { get; set; } = 0;
 
-        /**
-         * <summary> 
-         * Identifier of the recipe
-         * </summary>
-         */
-        public int id { get; private set; }
+    /**
+     * <summary>
+     *     Identifier of the recipe
+     * </summary>
+     */
+    public int Id { get; set; } = -1;
 
-        public List<RecipeStep> Steps { get; set; }
+    /**
+     * <summary>
+     *     The steps of the recipe
+     * </summary>
+     */
+    public List<RecipeStep> Steps { get; set; } = new();
 
-
-
-
+    /**
+     * <summary>
+     *     The ingredients of the recipe
+     * </summary>
+     */
+    public List<Ingredient> Ingredients { get; set; } = new();
+    
+    /**
+     * <summary>
+     *     Returns a string representation of the recipe
+     * </summary>
+     */
+    public override string ToString()
+    {
+        return Title;
     }
 }
-

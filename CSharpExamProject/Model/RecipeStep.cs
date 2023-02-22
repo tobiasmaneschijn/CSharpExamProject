@@ -1,11 +1,21 @@
-﻿using System;
-namespace MyRecipesLib.Model
-{
-	public struct RecipeStep
-	{
-		string Content { get; set; }
-		string VideoURL { get; set; }
-		string ImageBase64 { get; set; }
-	}
-}
+﻿namespace MyRecipesLib.Model;
 
+public struct RecipeStep
+{
+    public RecipeStep()
+    {
+    }
+    
+    public RecipeStep(int id, string content, string videoUrl, string imageBase64)
+    {
+        Id = id;
+        Content = content;
+        VideoUrl = videoUrl;
+        ImageBase64 = imageBase64;
+    }
+    
+     public int Id { get; set; } = 0;
+     public string Content { get; set; } = string.Empty;
+     public string VideoUrl { get; set; } = string.Empty;
+     public string ImageBase64 { get; set; } = string.Empty;
+}
