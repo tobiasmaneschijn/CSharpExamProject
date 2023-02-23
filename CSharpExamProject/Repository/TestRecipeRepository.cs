@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using MyRecipesLib.Model;
 
 namespace MyRecipesLib.Repository;
@@ -5,7 +6,7 @@ namespace MyRecipesLib.Repository;
  public class TestRecipeRepository : IRecipeRepository
 {
     // Private list of recipes including a few test recipes
-    private readonly List<Recipe> _recipes = new()
+    private readonly ObservableCollection<Recipe> _recipes = new()
     {
         new Recipe
         {
@@ -60,7 +61,7 @@ namespace MyRecipesLib.Repository;
     };
 
 
-    public IEnumerable<Recipe> GetAll()
+    public ObservableCollection<Recipe> Recipes()
     {
         return _recipes;
     }

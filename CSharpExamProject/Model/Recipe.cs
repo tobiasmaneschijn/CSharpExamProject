@@ -3,7 +3,7 @@
 public struct Recipe
 {
     
-    public Recipe(int id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients)
+    public Recipe(int id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients, string imageUrl)
     {
         Id = id;
         Title = title;
@@ -12,6 +12,7 @@ public struct Recipe
         CookingTime = cookingTime;
         Steps = steps;
         Ingredients = ingredients;
+        ImageUrl = imageUrl;
     }
  
     /**
@@ -66,6 +67,13 @@ public struct Recipe
      */
     public List<Ingredient> Ingredients { get; set; } = new();
     
+    /**
+     * <summary>
+     * Url to the image of the recipe
+     * </summary> 
+     */
+    public string ImageUrl { get; set; } = string.Empty;
+
     /**
      * <summary>
      *     Returns a string representation of the recipe

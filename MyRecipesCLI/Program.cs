@@ -36,7 +36,7 @@ static void PrintRecipe(Recipe recipe)
 
 IRecipeRepository recipeRepository = new LocalRecipeRepository();
 
-foreach (Recipe recipe in recipeRepository.GetAll())
+foreach (Recipe recipe in recipeRepository.Recipes())
 {
     // PrintRecipe(recipe);
 }

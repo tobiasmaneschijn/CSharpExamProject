@@ -44,7 +44,7 @@ public class RecipeAssistant
     public List<Recipe> FindRecipesByIngredients(List<Ingredient> ingredients)
     {
         List<Recipe> recipes = new();
-        foreach (Recipe recipe in RecipeRepository.GetAll())
+        foreach (Recipe recipe in RecipeRepository.Recipes())
         {
             bool canMake = true;
             foreach (Ingredient ingredient in recipe.Ingredients)
@@ -74,7 +74,7 @@ public class RecipeAssistant
     public List<Recipe> FindRecipesByIngredientsAndTime(List<Ingredient> ingredients, int time)
     {
         List<Recipe> recipes = new();
-        foreach (Recipe recipe in RecipeRepository.GetAll())
+        foreach (Recipe recipe in RecipeRepository.Recipes())
         {
             bool can = true;
             foreach (Ingredient ingredient in recipe.Ingredients)

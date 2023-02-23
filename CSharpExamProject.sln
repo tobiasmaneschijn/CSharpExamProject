@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 25.0.1705.0
+# Blend for Visual Studio Version 17
+VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipesLib", "CSharpExamProject\MyRecipesLib.csproj", "{7A4F7A59-8A95-4753-ADF9-CD8E4608E5DE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesLib", "CSharpExamProject\MyRecipesLib.csproj", "{7A4F7A59-8A95-4753-ADF9-CD8E4608E5DE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipesCLI", "MyRecipesCLI\MyRecipesCLI.csproj", "{9867DFB8-1793-42D2-8B8D-59316F0BA54B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesCLI", "MyRecipesCLI\MyRecipesCLI.csproj", "{9867DFB8-1793-42D2-8B8D-59316F0BA54B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyRecipesApp", "MyRecipesApp\MyRecipesApp.csproj", "{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesApp", "MyRecipesApp\MyRecipesApp.csproj", "{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,6 +25,7 @@ Global
 		{9867DFB8-1793-42D2-8B8D-59316F0BA54B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection

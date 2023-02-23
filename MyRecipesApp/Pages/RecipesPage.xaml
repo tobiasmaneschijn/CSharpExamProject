@@ -1,0 +1,34 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<!-- This page shows a nice looking list of recipes and has filters to sort between the different types of cuisine and diets -->
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:controls="using:MyRecipesApp.Controls"
+             xmlns:logic="using:MyRecipesApp.Logic"
+             x:Class="MyRecipesApp.Pages.RecipesPage"
+             BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}
+             ">
+    
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Here's you're recipes!" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
+            
+            <CollectionView ItemsSource="{Binding Recipes}"
+                            VerticalScrollBarVisibility="Always"
+                            >
+                <CollectionView.ItemsLayout>
+                    <GridItemsLayout Orientation="Vertical"
+                                     Span="2"
+                                     HorizontalItemSpacing="10"
+                                     VerticalItemSpacing="10" />
+                </CollectionView.ItemsLayout>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <controls:RecipeCell />
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

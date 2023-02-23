@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Text.Json;
 using System.Text.Json.Serialization;
 using MyRecipesLib.Model;
@@ -13,7 +14,7 @@ public class LocalRecipeRepository : IRecipeRepository
 {
     private readonly string _folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyRecipes");
     
-    private readonly List<Recipe> _recipes = new();
+    private readonly ObservableCollection<Recipe> _recipes = new();
     public LocalRecipeRepository()
     {
         Console.WriteLine(_folderPath);
@@ -29,6 +30,7 @@ public class LocalRecipeRepository : IRecipeRepository
                 PreparationTime = 1,
                 CookingTime = 5,
                 Description = "This is an amazing recipe on how to make hot water",
+                ImageUrl = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2022/09/vb-1-1663674509.jpg",
                 Ingredients = new List<Ingredient>
                 {
                     new()
@@ -144,11 +146,12 @@ public class LocalRecipeRepository : IRecipeRepository
     /*
      * Returns all the recipes in the repository
      */
-    public IEnumerable<Recipe> GetAll()
+    public ObservableCollection<Recipe> Recipes()
     {
         return _recipes;   
     }
 
+  
     /**
      * Returns a recipe from the repository
      */
