@@ -1,6 +1,6 @@
 ﻿namespace MyRecipesLib.Model;
 
-public struct RecipeStep
+public class RecipeStep
 {
     public RecipeStep()
     {

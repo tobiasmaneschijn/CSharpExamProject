@@ -1,0 +1,14 @@
+﻿<div class="form-group">
+	<label for="imageUpload">@Label</label>
+	<InputFile id="imageUpload" class="form-control-file" OnChange="@OnChange" />
+	@if (!string.IsNullOrEmpty(ImageUrl))
+	{
+		<img src="@($"data:image/jpeg;base64,{ImageUrl}")" alt="@Label" class="img-thumbnail" style="max-width: 200px; max-height: 200px;" />
+	}
+</div>
+
+@code {
+	[Parameter] public string Label { get; set; }
+	[Parameter] public string ImageUrl { get; set; }
+	[Parameter] public EventCallback<InputFileChangeEventArgs> OnChange { get; set; }
+}

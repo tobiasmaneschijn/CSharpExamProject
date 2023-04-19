@@ -8,12 +8,21 @@
     xmlns:pages="using:MyRecipesApp.Pages"
     xmlns:logic="using:MyRecipesApp.Logic">
 
+    <ShellContent
+        Title="Home"
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Icon="home"
+        Route="home"
+        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}">
+        >
+    </ShellContent>
 
     <ShellContent
         Title="Recipes"
         ContentTemplate="{DataTemplate pages:RecipesPage}"
         Icon="recipes"
-        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}">
+        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}"
+        Route="recipes"
         >
     </ShellContent>
 
@@ -21,7 +30,10 @@
         Title="Ingredients"
         ContentTemplate="{DataTemplate pages:IngredientsPage}"
         Icon="ingredients.png"
-        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}" />
+        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}" 
+        Route="ingredients"/>
 
+
+ 
 
 </Shell>

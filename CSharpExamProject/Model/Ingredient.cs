@@ -6,7 +6,7 @@ public struct Ingredient
      * <summary>
      * The identifier of the ingredient.
      */
-    public int Id { get; set; } = -1;
+    public string Id { get; set; } = "water";
 
     /*
      * <summary> 
@@ -45,7 +45,7 @@ public struct Ingredient
      * <param name="unit">The unit of the ingredient.</param>
      * <param name="notes">Any notes about the ingredient.</param>
      */
-    public Ingredient(int id, string name, int quantity, string unit, string notes)
+    public Ingredient(string id, string name, int quantity, string unit, string notes)
     {
         Id = id;
         Name = name;

@@ -1,9 +1,9 @@
 ﻿namespace MyRecipesLib.Model;
 
-public struct Recipe
+public class Recipe
 {
-    
-    public Recipe(int id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients, string imageUrl)
+	public Recipe() { }
+	public Recipe(string id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients, string imageUrl)
     {
         Id = id;
         Title = title;
@@ -51,7 +51,7 @@ public struct Recipe
      *     Identifier of the recipe
      * </summary>
      */
-    public int Id { get; set; } = -1;
+    public string Id { get; set; } = "test_empty";
 
     /**
      * <summary>

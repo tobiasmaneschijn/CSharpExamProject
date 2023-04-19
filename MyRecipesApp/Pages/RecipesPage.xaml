@@ -6,29 +6,24 @@
              xmlns:controls="using:MyRecipesApp.Controls"
              xmlns:logic="using:MyRecipesApp.Logic"
              x:Class="MyRecipesApp.Pages.RecipesPage"
-             BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}
-             ">
+             BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}">
     
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Here's you're recipes!" FontSize="Large" HorizontalOptions="Center" VerticalOptions="Center" />
-            
             <CollectionView ItemsSource="{Binding Recipes}"
-                            VerticalScrollBarVisibility="Always"
                             >
                 <CollectionView.ItemsLayout>
                     <GridItemsLayout Orientation="Vertical"
-                                     Span="2"
-                                     HorizontalItemSpacing="10"
-                                     VerticalItemSpacing="10" />
+                                     HorizontalItemSpacing="8"
+                                     VerticalItemSpacing="8"
+                                     Span="3" />
                 </CollectionView.ItemsLayout>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
-                        <controls:RecipeCell />
+
+                        <ContentView Padding="16">
+                            <controls:RecipeCell />
+                        </ContentView>
+                        
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
             </CollectionView>
-
-        </StackLayout>
-    </ContentPage.Content>
 </ContentPage>

@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Blend for Visual Studio Version 17
+# Visual Studio Version 17
 VisualStudioVersion = 17.4.33213.308
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesLib", "CSharpExamProject\MyRecipesLib.csproj", "{7A4F7A59-8A95-4753-ADF9-CD8E4608E5DE}"
@@ -8,6 +8,8 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesCLI", "MyRecipesCLI\MyRecipesCLI.csproj", "{9867DFB8-1793-42D2-8B8D-59316F0BA54B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesApp", "MyRecipesApp\MyRecipesApp.csproj", "{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MyRecipesWApp", "MyRecipesWApp\MyRecipesWApp.csproj", "{EFD53FE6-E385-4D92-9FED-BA7721F0979D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -28,6 +30,13 @@ Global
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Release|Any CPU.Build.0 = Release|Any CPU
+		{205FEDEE-2AEF-4D25-BF6F-30F05FDA4131}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFD53FE6-E385-4D92-9FED-BA7721F0979D}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

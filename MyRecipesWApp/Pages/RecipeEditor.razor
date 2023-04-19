@@ -1,0 +1,71 @@
+﻿@page "/editor"
+
+@using MyRecipesWApp.Data
+@using MyRecipesLib.Model
+@inject RecipesService RecipeService
+@inject NavigationManager NavigationManager
+
+<h1>Create Recipe</h1>
+
+<EditForm Model="_recipe" OnValidSubmit="CreateRecipe" > 
+	<DataAnnotationsValidator />
+	<ValidationSummary />
+
+	<div class="form-group py-2">
+		<label for="title">Title</label>
+		<InputText id="title" class="form-control" @bind-Value="_recipe.Title" />
+	</div>
+
+	<div class="form-group py-2">
+		<label for="description">Description</label>
+		<InputTextArea id="description" class="form-control" @bind-Value="_recipe.Description" />
+	</div>
+
+	<div class="form-group py-2">
+		<label for="preparationTime">Preparation Time (minutes)</label>
+		<InputNumber id="preparationTime" class="form-control" @bind-Value="_recipe.PreparationTime" />
+	</div>
+
+	<div class="form-group py-2">
+		<label for="cookingTime">Cooking Time (minutes)</label>
+		<InputNumber id="cookingTime" class="form-control" @bind-Value="_recipe.CookingTime" />
+	</div>
+	
+	<div class="form-group py-2">
+		<label for="mainimage">Main Image</label>
+		<InputText id="mainimage" class="form-control" @bind-Value="_recipe.ImageUrl" />
+	</div>
+
+	<RecipeStepsFormGroup RecipeSteps="@(_recipe.Steps)" />
+
+	<button type="submit" class="btn btn-primary">Create Recipe</button>
+</EditForm>
+
+@code {
+	private Recipe _recipe = new Recipe();
+
+	private async Task CreateRecipe()
+	{
+		_recipe.Id = Guid.NewGuid().ToString();
+		await RecipeService.AddRecipeAsync(_recipe);
+		NavigationManager.NavigateTo("/recipes");
+	}
+
+	private async Task HandleMainImageUpload(InputFileChangeEventArgs e)
+	{
+		_recipe.ImageUrl = await GetBase64ImageFromInputFileChangeEventArgs(e);
+	}
+
+	private async Task<string> GetBase64ImageFromInputFileChangeEventArgs(InputFileChangeEventArgs e)
+	{
+		var file = e.File;
+		if (file != null)
+		{
+			using var memoryStream = new MemoryStream();
+			await file.OpenReadStream().CopyToAsync(memoryStream);
+			var imageBytes = memoryStream.ToArray();
+			return Convert.ToBase64String(imageBytes);
+		}
+		return null;
+	}
+}

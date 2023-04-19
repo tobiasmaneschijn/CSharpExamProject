@@ -6,8 +6,8 @@ namespace MyRecipesLib.Repository;
 public interface IRecipeRepository
 {
     ObservableCollection<Recipe> Recipes();
-    Recipe Get(int id);
+    Recipe Get(string id);
     Recipe Add(Recipe item);
-    void Remove(int id);
+    void Remove(string id);
     bool Update(Recipe item);
 }

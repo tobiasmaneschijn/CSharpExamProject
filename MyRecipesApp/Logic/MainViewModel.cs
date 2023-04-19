@@ -8,27 +8,24 @@ namespace MyRecipesApp.Logic;
 
 public class MainViewModel
 {
-    // make it a singleton
-    
     private  IRecipeRepository RecipeRepository { get; } = new LocalRecipeRepository();
     public RecipeAssistant AppRecipeAssistant { get; }
+    public Recipe CurrentRecipe { get; set; }
 
-    public ObservableCollection<Recipe> Recipes
-    {
-        get => RecipeRepository.Recipes();
-    }
+   
+
+    public ObservableCollection<Recipe> Recipes => RecipeRepository.Recipes();
 
     public MainViewModel()
     {
         AppRecipeAssistant = new RecipeAssistant(RecipeRepository);
     }
     
-    
-    public ICommand OpenRecipeCommand { get; }
+   
 
-    private async Task ExecuteOpenRecipeCommand(Recipe recipe)
+    public void SetCurrentRecipe(string recipeId)
     {
-        await Shell.Current.GoToAsync($"RecipeDetailsPage?recipeId={recipe.Id}");
+        var recipe = RecipeRepository.Recipes() .FirstOrDefault(r => r.Id == recipeId);
+        CurrentRecipe = recipe;
     }
-    
 }

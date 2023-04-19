@@ -21,61 +21,61 @@ public class LocalRecipeRepository : IRecipeRepository
         if (!Directory.Exists(_folderPath))
         {
             Directory.CreateDirectory(_folderPath);
-            
-            // Create a test recipe and save it in a file
-            var recipe = new Recipe
-            {
-                Id = 1,
-                Title = "Hot Water",
-                PreparationTime = 1,
-                CookingTime = 5,
-                Description = "This is an amazing recipe on how to make hot water",
-                ImageUrl = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2022/09/vb-1-1663674509.jpg",
-                Ingredients = new List<Ingredient>
-                {
-                    new()
-                    {
-                        Id = 1,
-                        Name = "Water",
-                        Quantity = 250,
-                        Unit = "ml"
-                    },
-                    new()
-                    {
-                        Id = 2,
-                        Name = "Kettle",
-                        Quantity = 1,
-                        Unit = "piece"
-                    },
-                    new()
-                    {
-                        Id = 3,
-                        Name = "Cup",
-                        Quantity = 1,
-                        Unit = "piece"
-                    }
-                },
-                Steps = new List<RecipeStep>
-                {
-                    new()
-                    {
-                        Id = 1,
-                        Content = "Put water in a kettle and boil it"
-                    },
-                    new()
-                    {
-                        Id = 2,
-                        Content = "Pour the water into a cup"
-                    },
-                    new()
-                    {
-                        Id = 3,
-                        Content = "Enjoy your hot water"
-                    }
-                }
-            };
-            
-            var json = JsonSerializer.Serialize(recipe);
+
+			// Create a test recipe and save it in a file
+			var recipe = new Recipe
+			{
+				Id = "hot_water",
+				Title = "Hot Water",
+				PreparationTime = 1,
+				CookingTime = 5,
+				Description = "This is an amazing recipe on how to make hot water",
+				ImageUrl = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2022/09/vb-1-1663674509.jpg",
+				Ingredients = new List<Ingredient>
+				{
+					new Ingredient
+					{
+						Id = "water",
+						Name = "Water",
+						Quantity = 250,
+						Unit = "ml"
+					},
+					new Ingredient
+					{
+						Id = "kettle",
+						Name = "Kettle",
+						Quantity = 1,
+						Unit = "piece"
+					},
+					new Ingredient
+					{
+						Id = "cup",
+						Name = "Cup",
+						Quantity = 1,
+						Unit = "piece"
+					}
+				},
+				Steps = new List<RecipeStep>
+				{
+					new RecipeStep
+					{
+						Id = 1,
+						Content = "Put water in a kettle and boil it"
+					},
+					new RecipeStep
+					{
+						Id = 2,
+						Content = "Pour the water into a cup"
+					},
+					new RecipeStep
+					{
+						Id = 3,
+						Content = "Enjoy your hot water"
+					}
+				}
+			};
+
+			var json = JsonSerializer.Serialize(recipe);
             File.WriteAllText(Path.Combine(_folderPath, "hot_water.json"), json);
         }
         var files = Directory.GetFiles(_folderPath);
@@ -155,7 +155,7 @@ public class LocalRecipeRepository : IRecipeRepository
     /**
      * Returns a recipe from the repository
      */
-    public Recipe Get(int id)
+    public Recipe Get(string id)
     {
         return _recipes.FirstOrDefault(r => r.Id == id);
     }
@@ -173,7 +173,7 @@ public class LocalRecipeRepository : IRecipeRepository
     /**
      * Removes a recipe from the repository and deletes the file
      */
-    public void Remove(int id)
+    public void Remove(string id)
     {
         try
         {
