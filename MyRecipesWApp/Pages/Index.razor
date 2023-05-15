@@ -13,14 +13,14 @@ Card of a random recipe
     <div class="row">
         <div class="col gap-2">
             <RecipeOfTheDay></RecipeOfTheDay>
-              <div class="card diet-tip p-2 my-5">
-                            <div class="card-title text-center h3">
-                                Quote of the Day
-                            </div>
-                            <div class="card-body">
-                                <p class="card-text text-center fs-4">@quote</p>
-                            </div>
-                        </div>
+            <div class="card diet-tip p-2 my-5">
+                <div class="card-title text-center h3">
+                    Quote of the Day
+                </div>
+                <div class="card-body">
+                    <p class="card-text text-center fs-4">@quote - <span class="fw-bold">@author</span></p>
+                </div>
+            </div>
         </div>
 
     </div>
@@ -31,13 +31,15 @@ Card of a random recipe
 @code {
 
     // fetch from https://api.api-ninjas.com/v1/quotes?category=food
-    string quote = "loading...";
-    
+    string quote = "Loading...";
+        
+    string author = "";
+
     protected override async Task OnInitializedAsync()
     {
         QuoteData quoteData = await QuoteAPI.GetQuote();
-        
-        quote = quoteData.ToString();
+        quote = quoteData.Quote;
+        author = quoteData.Author;
     }
 
 
