@@ -1,6 +1,9 @@
 using System.Collections.ObjectModel;
 using System.Text.Json;
 using MyRecipesLib.Model;
+using RandomDataGenerator;
+using RandomDataGenerator.FieldOptions;
+using RandomDataGenerator.Randomizers;
 
 namespace MyRecipesLib.Repository;
 
@@ -16,6 +19,7 @@ public class LocalRecipeRepository : IRecipeRepository
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyRecipes");
 
     private readonly ObservableCollection<Recipe> _recipes = new();
+
 
     public LocalRecipeRepository(string folderPath)
     {
@@ -98,61 +102,12 @@ public class LocalRecipeRepository : IRecipeRepository
         {
             Directory.CreateDirectory(_folderPath);
 
-            // Create a test recipe and save it in a file
-            var recipe = new Recipe
+         
+            for (var i = 0; i < 50; i++)
             {
-                Id = "hot_water",
-                Title = "Hot Water",
-                PreparationTime = 1,
-                CookingTime = 5,
-                Description = "This is an amazing recipe on how to make hot water",
-                ImageUrl = "https://resize.indiatvnews.com/en/resize/newbucket/1200_-/2022/09/vb-1-1663674509.jpg",
-                Ingredients = new List<Ingredient>
-                {
-                    new()
-                    {
-                        Id = "water",
-                        Name = "Water",
-                        Quantity = 250,
-                        Unit = "ml"
-                    },
-                    new()
-                    {
-                        Id = "kettle",
-                        Name = "Kettle",
-                        Quantity = 1,
-                        Unit = "piece"
-                    },
-                    new()
-                    {
-                        Id = "cup",
-                        Name = "Cup",
-                        Quantity = 1,
-                        Unit = "piece"
-                    }
-                },
-                Steps = new List<RecipeStep>
-                {
-                    new()
-                    {
-                        Id = 1,
-                        Content = "Put water in a kettle and boil it"
-                    },
-                    new()
-                    {
-                        Id = 2,
-                        Content = "Pour the water into a cup"
-                    },
-                    new()
-                    {
-                        Id = 3,
-                        Content = "Enjoy your hot water"
-                    }
-                }
-            };
-
-            var json = JsonSerializer.Serialize(recipe);
-            File.WriteAllText(Path.Combine(_folderPath, "hot_water.json"), json);
+                var r = RecipeGenerator.GenerateRandomRecipe();
+                Save(r);
+            }
         }
 
         var files = Directory.GetFiles(_folderPath);
