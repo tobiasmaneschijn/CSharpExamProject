@@ -15,12 +15,24 @@ public class LocalRecipeRepository : IRecipeRepository
     private readonly string _folderPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyRecipes");
     
     private readonly ObservableCollection<Recipe> _recipes = new();
+
+    public LocalRecipeRepository(string folderPath)
+    {
+	    _folderPath = folderPath;
+	    Initialize();
+    }
+
     public LocalRecipeRepository()
     {
-        Console.WriteLine(_folderPath);
-        if (!Directory.Exists(_folderPath))
-        {
-            Directory.CreateDirectory(_folderPath);
+	    Initialize();
+    }
+
+    private void Initialize()
+    {
+		Console.WriteLine(_folderPath);
+		if (!Directory.Exists(_folderPath))
+		{
+			Directory.CreateDirectory(_folderPath);
 
 			// Create a test recipe and save it in a file
 			var recipe = new Recipe
@@ -76,23 +88,23 @@ public class LocalRecipeRepository : IRecipeRepository
 			};
 
 			var json = JsonSerializer.Serialize(recipe);
-            File.WriteAllText(Path.Combine(_folderPath, "hot_water.json"), json);
-        }
-        var files = Directory.GetFiles(_folderPath);
-        
-        foreach (var file in files)
-        {
-            // filter out non-recipe files
-            if (!file.EndsWith(".json"))
-            {
-                continue;
-            }
-            
-            var recipe =  JsonSerializer.Deserialize<Recipe>(File.ReadAllText(file));
-            _recipes.Add(recipe);
-        }
-    }
-    
+			File.WriteAllText(Path.Combine(_folderPath, "hot_water.json"), json);
+		}
+		var files = Directory.GetFiles(_folderPath);
+
+		foreach (var file in files)
+		{
+			// filter out non-recipe files
+			if (!file.EndsWith(".json"))
+			{
+				continue;
+			}
+
+			var recipe = JsonSerializer.Deserialize<Recipe>(File.ReadAllText(file));
+			_recipes.Add(recipe);
+		}
+	}
+
     /**
      * Saves a recipe in a file
      */
@@ -142,20 +154,19 @@ public class LocalRecipeRepository : IRecipeRepository
             _recipes.Add(recipe);
         }
     }
-    
-    /*
+
+	/*
      * Returns all the recipes in the repository
      */
-    public ObservableCollection<Recipe> Recipes()
-    {
-        return _recipes;   
-    }
+	public ObservableCollection<Recipe> Recipes()
+	{
+        return _recipes;
+	}
 
-  
-    /**
+	/**
      * Returns a recipe from the repository
      */
-    public Recipe Get(string id)
+	public Recipe Get(string id)
     {
         return _recipes.FirstOrDefault(r => r.Id == id);
     }
