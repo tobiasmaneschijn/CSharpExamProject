@@ -1,21 +1,13 @@
 ﻿using MyRecipesLib.Model;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 
 namespace MyRecipesApp.Controls;
 
 public partial class RecipeCell : ContentView
 {
-    
     public RecipeCell()
     {
-      InitializeComponent();
-      var tapGestureRecognizer = (TapGestureRecognizer) FindByName("TapGestureRecognizer");
-
+        InitializeComponent();
+        var tapGestureRecognizer = (TapGestureRecognizer)FindByName("TapGestureRecognizer");
     }
 
     // tapped event handler
@@ -23,7 +15,6 @@ public partial class RecipeCell : ContentView
     {
         var recipe = (Recipe)BindingContext;
         await Shell.Current.GoToAsync($"details?recipeId={recipe.Id}");
-       var route =  Shell.Current.CurrentItem.Route;
+        var route = Shell.Current.CurrentItem.Route;
     }
-
 }

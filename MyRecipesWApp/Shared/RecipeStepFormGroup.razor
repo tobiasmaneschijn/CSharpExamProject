@@ -1,31 +1,36 @@
 ﻿@using MyRecipesLib.Model
 <div class="form-group">
-	<label>Step @Step.Id</label>
-	<button type="button" class="btn btn-secondary mb-2" @onclick="OnRemove">Remove Step</button>
-	<InputTextArea class="form-control" @bind-Value="Step.Content" />
-	<ImageUploadFormGroup Label="Step Image" ImageUrl="@Step.ImageBase64" OnChange="(args) => HandleImageUpload(args, Step)" />
-	
+    <label>Step @Step.Id</label>
+    <button type="button" class="btn btn-secondary mb-2" @onclick="OnRemove">Remove Step</button>
+    <InputTextArea class="form-control" @bind-Value="Step.Content"/>
+    <ImageUploadFormGroup Label="Step Image" ImageUrl="@Step.ImageBase64" OnChange="args => HandleImageUpload(args, Step)"/>
+
 </div>
 
 @code {
-	[Parameter] public RecipeStep Step { get; set; }
-	[Parameter] public EventCallback OnRemove { get; set; }
 
-	private async Task HandleImageUpload(InputFileChangeEventArgs e, RecipeStep step)
-	{
-		step.ImageBase64 = await GetBase64ImageFromInputFileChangeEventArgs(e);
-	}
+    [Parameter]
+    public RecipeStep Step { get; set; }
 
-	private async Task<string> GetBase64ImageFromInputFileChangeEventArgs(InputFileChangeEventArgs e)
-	{
-		var file = e.File;
-		if (file != null)
-		{
-			using var memoryStream = new MemoryStream();
-			await file.OpenReadStream().CopyToAsync(memoryStream);
-			var imageBytes = memoryStream.ToArray();
-			return Convert.ToBase64String(imageBytes);
-		}
-		return null;
-	}
+    [Parameter]
+    public EventCallback OnRemove { get; set; }
+
+    private async Task HandleImageUpload(InputFileChangeEventArgs e, RecipeStep step)
+    {
+        step.ImageBase64 = await GetBase64ImageFromInputFileChangeEventArgs(e);
+    }
+
+    private async Task<string> GetBase64ImageFromInputFileChangeEventArgs(InputFileChangeEventArgs e)
+    {
+        var file = e.File;
+        if (file != null)
+        {
+            using var memoryStream = new MemoryStream();
+            await file.OpenReadStream().CopyToAsync(memoryStream);
+            var imageBytes = memoryStream.ToArray();
+            return Convert.ToBase64String(imageBytes);
+        }
+        return null;
+    }
+
 }

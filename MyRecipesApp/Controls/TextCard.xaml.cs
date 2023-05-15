@@ -1,16 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net.Mime;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Net.Mime;
 
 namespace MyRecipesApp.Controls;
 
 public partial class TextCard : ContentView
 {
-
-
     // Text property
     public static readonly BindableProperty TextProperty = BindableProperty.Create(
         nameof(MediaTypeNames.Text),
@@ -24,18 +17,15 @@ public partial class TextCard : ContentView
             control.LabelText.Text = newvalue as string;
         });
 
-    public string Text
-    {
-        get => (string)GetValue(TextProperty);
-        set => SetValue(TextProperty, value);
-    }
-
 
     public TextCard()
     {
         InitializeComponent();
+    }
 
-
-
+    public string Text
+    {
+        get => (string)GetValue(TextProperty);
+        set => SetValue(TextProperty, value);
     }
 }

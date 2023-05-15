@@ -18,17 +18,12 @@ static void PrintRecipe(Recipe recipe)
     Console.ForegroundColor = ConsoleColor.Yellow;
     Console.WriteLine("Ingredients:");
 
-    foreach (Ingredient ingredient in recipe.Ingredients)
-    {
+    foreach (var ingredient in recipe.Ingredients)
         Console.WriteLine($"- {ingredient.Quantity} {ingredient.Unit} {ingredient.Name}");
-    }
 
     Console.ForegroundColor = ConsoleColor.White;
     Console.WriteLine("Steps:");
-    foreach (RecipeStep step in recipe.Steps)
-    {
-        Console.WriteLine($"- {step.Content}");
-    }
+    foreach (var step in recipe.Steps) Console.WriteLine($"- {step.Content}");
 
     Console.WriteLine();
 }
@@ -36,7 +31,7 @@ static void PrintRecipe(Recipe recipe)
 
 IRecipeRepository recipeRepository = new LocalRecipeRepository();
 
-foreach (Recipe recipe in recipeRepository.Recipes())
+foreach (var recipe in recipeRepository.Recipes())
 {
     // PrintRecipe(recipe);
 }
@@ -49,36 +44,25 @@ var recipes = recipeAssistant.FindRecipesByIngredients(new List<Ingredient>
 {
     new()
     {
-        Id = 1,
+        Id = "water",
         Name = "Water",
         Quantity = 250,
         Unit = "ml"
     },
     new()
     {
-        Id = 5,
-        Name = "Water",
-        Quantity = 250,
-        Unit = "ml"
-    },
-    new()
-    {
-        Id = 3,
+        Id = "cup",
         Name = "Cup",
         Quantity = 1,
         Unit = "piece"
     },
     new()
     {
-        Id = 2,
+        Id = "kettle",
         Name = "Kettle",
         Quantity = 1,
         Unit = "piece"
-
     }
 });
 
-foreach (Recipe recipe in recipes)
-{
-    PrintRecipe(recipe);
-}
+foreach (var recipe in recipes) PrintRecipe(recipe);

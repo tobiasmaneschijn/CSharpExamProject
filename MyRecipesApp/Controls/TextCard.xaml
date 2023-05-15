@@ -4,7 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyRecipesApp.Controls.TextCard">
     <Frame HasShadow="True">
-        <ContentView Padding="16" >
+        <ContentView Padding="16">
             <Label x:Name="LabelText" Text="{Binding Text}" TextColor="Black" />
         </ContentView>
     </Frame>

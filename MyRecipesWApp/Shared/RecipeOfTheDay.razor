@@ -1,0 +1,45 @@
+@using MyRecipesLib.Model
+@using MyRecipesWApp.Data
+@inject RecipesService RecipeService
+
+@{
+    // This component is a card that shows the recipe of the day (randomly selected)
+    // It is used in the Index page
+    // it fills the width of the page
+    // it has a title, an image on the left, and a description
+}
+
+<div class="card p-2" style="width: 100%;">
+        <h3 class="card-title text-center">Recipe of the day</h3>
+    <div class="card-body ">
+        <div class="row">
+            <div class="col-md-4">
+                <img src="@recipe.ImageUrl" class="img-fluid" alt="@recipe.Title"/>
+            </div>
+            <div class="col-md-8 d-flex flex-column justify-content-center">
+                <h4 class="card-title">@recipe.Title</h4>
+                <p class="card-text fs-4">@recipe.Description</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+@code
+{
+    Recipe[] recipes;
+    Recipe recipe;
+
+    Recipe GetRandomRecipe()
+    {
+        var random = new Random();
+        var index = random.Next(recipes.Length);
+        return recipes[index];
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipes = await RecipeService.GetRecipesAsync();
+        recipe = GetRandomRecipe();
+    }
+
+}

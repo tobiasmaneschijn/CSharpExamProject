@@ -7,23 +7,22 @@
              xmlns:logic="using:MyRecipesApp.Logic"
              x:Class="MyRecipesApp.Pages.RecipesPage"
              BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}">
-    
-            <CollectionView ItemsSource="{Binding Recipes}"
-                            >
-                <CollectionView.ItemsLayout>
-                    <GridItemsLayout Orientation="Vertical"
-                                     HorizontalItemSpacing="8"
-                                     VerticalItemSpacing="8"
-                                     Span="3" />
-                </CollectionView.ItemsLayout>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
 
-                        <ContentView Padding="16">
-                            <controls:RecipeCell />
-                        </ContentView>
-                        
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+    <CollectionView ItemsSource="{Binding Recipes}">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical"
+                             HorizontalItemSpacing="8"
+                             VerticalItemSpacing="8"
+                             Span="3" />
+        </CollectionView.ItemsLayout>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+
+                <ContentView Padding="16">
+                    <controls:RecipeCell />
+                </ContentView>
+
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
 </ContentPage>

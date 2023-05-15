@@ -18,11 +18,7 @@ public static class ShellExtensions
     public static void OnBindingContextChanged(BindableObject view, object oldValue, object newValue)
     {
         if (view is Shell shell && newValue != null)
-        {
             foreach (var content in shell.CurrentItem.Items)
-            {
                 SetBindingContext(content, newValue);
-            }
-        }
     }
 }

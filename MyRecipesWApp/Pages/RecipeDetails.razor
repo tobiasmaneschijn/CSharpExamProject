@@ -1,58 +1,61 @@
 ﻿@page "/recipe-details/{Id}"
-
-@using MyRecipesWApp.Data
 @using MyRecipesLib.Model
+@using MyRecipesWApp.Data
 @inject RecipesService RecipeService
 
 @code {
-	[Parameter] public string Id { get; set; }
 
-	private Recipe _recipe;
+    [Parameter]
+    public string Id { get; set; }
 
-	protected override async Task OnInitializedAsync()
-	{
-		_recipe = await RecipeService.GetRecipeAsync(Id);
-	}
+    private Recipe _recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        _recipe = await RecipeService.GetRecipeAsync(Id);
+    }
+
 }
 
 @if (_recipe.Id == "test_empty")
 {
-	<p>Recipe not found.</p>
+    <p>Recipe not found.</p>
 }
 else
 {
-	<div class="row mb-4">
-		<div class="col-md-6">
-			<div class="recipe-image" style="background-image: url('@_recipe.ImageUrl');"></div></div>
-		<div class="col-md-6">
-			<h1>@_recipe.Title</h1>
-			<p>@_recipe.Description</p>
-			<p>Preparation time: @_recipe.PreparationTime minutes</p>
-			<p>Cooking time: @_recipe.CookingTime minutes</p>
-			<a href="/recipes" class="btn btn-primary">Back to Recipes</a>
-		</div>
-	</div>
+    <div class="row mb-4">
+        <div class="col-md-6">
+            <div class="recipe-image" style="background-image: url('@_recipe.ImageUrl');"></div>
+        </div>
+        <div class="col-md-6">
+            <h1>@_recipe.Title</h1>
+            <p>@_recipe.Description</p>
+            <p>Preparation time: @_recipe.PreparationTime minutes</p>
+            <p>Cooking time: @_recipe.CookingTime minutes</p>
+            <a href="/recipes" class="btn btn-primary">Back to Recipes</a>
+        </div>
+    </div>
 
-	
-	<h2>Recipe Steps</h2>
-	<ol class="list-group list-group-numbered">
-		@foreach (var step in _recipe.Steps)
-		{
-			<li class="list-group-item">
-				<div>@step.Content</div>
-				@if (!string.IsNullOrEmpty(step.ImageBase64))
-				{
-					<img src="data:image/png;base64,@step.ImageBase64" class="img-fluid my-2" />
-				}
-				@if (!string.IsNullOrEmpty(step.VideoUrl))
-				{
-					<div class="my-2">
-						<a href="@step.VideoUrl" target="_blank" rel="noopener noreferrer">Watch video</a>
-					</div>
-				}
-			</li>
-		}
-	</ol>
+
+    <h2>Recipe Steps</h2>
+    <ol class="list-group list-group-numbered">
+        @foreach (var step in _recipe.Steps)
+        {
+            <li class="list-group-item">
+                <div>@step.Content</div>
+                @if (!string.IsNullOrEmpty(step.ImageBase64))
+                {
+                    <img src="data:image/png;base64,@step.ImageBase64" class="img-fluid my-2"/>
+                }
+                @if (!string.IsNullOrEmpty(step.VideoUrl))
+                {
+                    <div class="my-2">
+                        <a href="@step.VideoUrl" target="_blank" rel="noopener noreferrer">Watch video</a>
+                    </div>
+                }
+            </li>
+        }
+    </ol>
 }
 
 

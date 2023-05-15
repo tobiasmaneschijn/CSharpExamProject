@@ -22,18 +22,14 @@
         ContentTemplate="{DataTemplate pages:RecipesPage}"
         Icon="recipes"
         BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}"
-        Route="recipes"
-        >
-    </ShellContent>
+        Route="recipes" />
 
     <ShellContent
         Title="Ingredients"
         ContentTemplate="{DataTemplate pages:IngredientsPage}"
         Icon="ingredients.png"
-        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}" 
-        Route="ingredients"/>
+        BindingContext="{x:Static logic:ViewModelLocator.MainViewModelInstance}"
+        Route="ingredients" />
 
-
- 
 
 </Shell>

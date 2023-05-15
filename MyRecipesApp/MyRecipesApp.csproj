@@ -32,47 +32,47 @@
 
     <ItemGroup>
         <!-- App Icon -->
-        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+        <MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4"/>
 
         <!-- Splash Screen -->
-        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+        <MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128"/>
 
         <!-- Images -->
-        <MauiImage Include="Resources\Images\*" />
-        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+        <MauiImage Include="Resources\Images\*"/>
+        <MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208"/>
 
         <!-- Custom Fonts -->
-        <MauiFont Include="Resources\Fonts\*" />
+        <MauiFont Include="Resources\Fonts\*"/>
 
         <!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
-        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+        <MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)"/>
     </ItemGroup>
 
     <ItemGroup>
-      <None Remove="Resources\Images\cooking.svg" />
+        <None Remove="Resources\Images\cooking.svg"/>
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0" />
+        <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="7.0.0"/>
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\CSharpExamProject\MyRecipesLib.csproj" />
+        <ProjectReference Include="..\CSharpExamProject\MyRecipesLib.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Compile Update="Controls\TextCard.xaml.cs">
-        <DependentUpon>TextCard.xaml</DependentUpon>
-      </Compile>
-      <Compile Update="Pages\RecipeDetailsPage.xaml.cs">
-        <DependentUpon>RecipeDetailsPage.xaml</DependentUpon>
-      </Compile>
+        <Compile Update="Controls\TextCard.xaml.cs">
+            <DependentUpon>TextCard.xaml</DependentUpon>
+        </Compile>
+        <Compile Update="Pages\RecipeDetailsPage.xaml.cs">
+            <DependentUpon>RecipeDetailsPage.xaml</DependentUpon>
+        </Compile>
     </ItemGroup>
 
     <ItemGroup>
-      <MauiXaml Update="Pages\RecipeDetailsPage.xaml">
-        <Generator>MSBuild:Compile</Generator>
-      </MauiXaml>
+        <MauiXaml Update="Pages\RecipeDetailsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+        </MauiXaml>
     </ItemGroup>
 
 </Project>

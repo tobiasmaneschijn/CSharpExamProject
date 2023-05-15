@@ -12,7 +12,6 @@ namespace MyRecipesLib.Logic;
  */
 public class RecipeAssistant
 {
- 
     /*
      * <summary>
      *    The RecipeAssistant constructor.
@@ -24,16 +23,15 @@ public class RecipeAssistant
     {
         RecipeRepository = recipeRepository;
     }
- 
+
     /*
      * <summary>
      *    The repository to use for recipes.
      * </summary>
      */
     public IRecipeRepository RecipeRepository { get; set; }
- 
 
- 
+
     /*
      * <summary>
      *    Returns a list of recipes that can be made with the ingredients the user has available.
@@ -44,25 +42,22 @@ public class RecipeAssistant
     public List<Recipe> FindRecipesByIngredients(List<Ingredient> ingredients)
     {
         List<Recipe> recipes = new();
-        foreach (Recipe recipe in RecipeRepository.Recipes())
+        foreach (var recipe in RecipeRepository.Recipes())
         {
-            bool canMake = true;
-            foreach (Ingredient ingredient in recipe.Ingredients)
-            {
+            var canMake = true;
+            foreach (var ingredient in recipe.Ingredients)
                 if (!ingredients.Contains(ingredient))
                 {
                     canMake = false;
                     break;
                 }
-            }
-            if (canMake)
-            {
-                recipes.Add(recipe);
-            }
+
+            if (canMake) recipes.Add(recipe);
         }
+
         return recipes;
     }
- 
+
     /*
      * <summary>
      *    Returns a list of recipes that can be made with the ingredients the user has available and the time the user has available.
@@ -76,21 +71,17 @@ public class RecipeAssistant
         List<Recipe> recipes = new();
         foreach (var recipe in RecipeRepository.Recipes())
         {
-            bool can = true;
-            foreach (Ingredient ingredient in recipe.Ingredients)
-            {
+            var can = true;
+            foreach (var ingredient in recipe.Ingredients)
                 if (!ingredients.Contains(ingredient))
                 {
                     can = false;
                     break;
                 }
-            }
 
-            if (can && recipe.PreparationTime + recipe.CookingTime <= time)
-            {
-                recipes.Add(recipe);
-            }
+            if (can && recipe.PreparationTime + recipe.CookingTime <= time) recipes.Add(recipe);
         }
+
         return recipes;
     }
 }

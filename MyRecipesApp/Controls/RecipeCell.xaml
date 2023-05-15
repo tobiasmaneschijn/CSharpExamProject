@@ -1,28 +1,28 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
+
 <ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="MyRecipesApp.Controls.RecipeCell"
              WidthRequest="400"
-             HeightRequest="400"
-             >
-    
-   
-    <Frame WidthRequest="400" HeightRequest="400" Padding="0" HasShadow="True">
-        <Grid  >
-            <Image Grid.Row="0" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="400"/>
+             HeightRequest="400">
 
-            <StackLayout VerticalOptions="End" Padding="20" BackgroundColor="#60000000"  >
-                <Label Grid.Row="0" Text="{Binding Title}" FontSize="24" FontAttributes="Bold" TextColor="White"/>
+
+    <Frame WidthRequest="400" HeightRequest="400" Padding="0" HasShadow="True">
+        <Grid>
+            <Image Grid.Row="0" Source="{Binding ImageUrl}" Aspect="AspectFill" HeightRequest="400" />
+
+            <StackLayout VerticalOptions="End" Padding="20" BackgroundColor="#60000000">
+                <Label Text="{Binding Title}" FontSize="24" FontAttributes="Bold" TextColor="White" />
 
                 <StackLayout Orientation="Horizontal">
-                    <Label Text="{Binding CookingTime, StringFormat='{0} minutes'}" Margin="10,0,0,0" TextColor="White"/>
+                    <Label Text="{Binding CookingTime, StringFormat='{0} minutes'}" Margin="10,0,0,0" TextColor="White" />
                 </StackLayout>
-            
+
             </StackLayout>
-     
+
         </Grid>
         <Frame.GestureRecognizers>
-            <TapGestureRecognizer Tapped="OnTapped" x:Name="TapGestureRecognizer"/>
+            <TapGestureRecognizer Tapped="OnTapped" x:Name="TapGestureRecognizer" />
         </Frame.GestureRecognizers>
     </Frame>
 </ContentView>

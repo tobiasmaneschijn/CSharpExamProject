@@ -4,6 +4,11 @@ namespace MyRecipesApp.Pages;
 
 public partial class RecipeDetailsPage : ContentPage, IQueryAttributable
 {
+    public RecipeDetailsPage()
+    {
+        InitializeComponent();
+    }
+
     public void ApplyQueryAttributes(IDictionary<string, object> query)
     {
         var viewModel = ViewModelLocator.MainViewModelInstance;
@@ -11,11 +16,5 @@ public partial class RecipeDetailsPage : ContentPage, IQueryAttributable
         var recipeId = (string)query["recipeId"];
         viewModel.SetCurrentRecipe(recipeId);
         BindingContext = viewModel.CurrentRecipe;
-
-    }
-
-    public RecipeDetailsPage()
-    {
-        InitializeComponent();
     }
 }

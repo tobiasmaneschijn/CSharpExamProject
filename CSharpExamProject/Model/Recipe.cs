@@ -2,8 +2,12 @@
 
 public class Recipe
 {
-	public Recipe() { }
-	public Recipe(string id, string title, string description, int preparationTime, int cookingTime, List<RecipeStep> steps, List<Ingredient> ingredients, string imageUrl)
+    public Recipe()
+    {
+    }
+
+    public Recipe(string id, string title, string description, int preparationTime, int cookingTime,
+        List<RecipeStep> steps, List<Ingredient> ingredients, string imageUrl)
     {
         Id = id;
         Title = title;
@@ -14,7 +18,7 @@ public class Recipe
         Ingredients = ingredients;
         ImageUrl = imageUrl;
     }
- 
+
     /**
      * <summary>
      *     The name of the recipe
@@ -37,14 +41,14 @@ public class Recipe
      *     How long to prepare ingredients in minutes
      * </summary>
      */
-    public int PreparationTime { get; set; } = 0;
+    public int PreparationTime { get; set; }
 
     /**
      * <summary>
      *     How long to cook the recipe
      * </summary>
      */
-    public int CookingTime { get; set; } = 0;
+    public int CookingTime { get; set; }
 
     /**
      * <summary>
@@ -66,11 +70,11 @@ public class Recipe
      * </summary>
      */
     public List<Ingredient> Ingredients { get; set; } = new();
-    
+
     /**
      * <summary>
-     * Url to the image of the recipe
-     * </summary> 
+     *     Url to the image of the recipe
+     * </summary>
      */
     public string ImageUrl { get; set; } = string.Empty;
 
