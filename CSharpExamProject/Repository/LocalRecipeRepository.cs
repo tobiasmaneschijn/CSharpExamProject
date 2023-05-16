@@ -17,10 +17,8 @@ public class LocalRecipeRepository : IRecipeRepository
 {
     private readonly string _folderPath =
         Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "MyRecipes");
-
     private readonly ObservableCollection<Recipe> _recipes = new();
-
-
+    
     public LocalRecipeRepository(string folderPath)
     {
         _folderPath = folderPath;
@@ -136,32 +134,6 @@ public class LocalRecipeRepository : IRecipeRepository
         {
             Console.WriteLine(e);
             throw;
-        }
-    }
-
-    /**
-     * Saves all the recipes in individual files
-     */
-    private void SaveAll()
-    {
-        foreach (var recipe in _recipes) Save(recipe);
-    }
-
-    /*
-     * Reload all the recipes from the files
-     */
-    public void Reload()
-    {
-        _recipes.Clear();
-        var files = Directory.GetFiles(_folderPath);
-
-        foreach (var file in files)
-        {
-            // filter out non-recipe files
-            if (!file.EndsWith(".json")) continue;
-
-            var recipe = JsonSerializer.Deserialize<Recipe>(File.ReadAllText(file));
-            _recipes.Add(recipe ?? throw new InvalidOperationException());
         }
     }
 }

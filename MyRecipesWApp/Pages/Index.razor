@@ -1,13 +1,7 @@
 ﻿@page "/"
 @using MyRecipesLib.Logic
-@using MyRecipesLib.Model.Quotes
 
 <h1>Recipes Galore!</h1>
-
-<!-- 
-Card of a random recipe
--->
-
 
 <div class="container gap-2">
     <div class="row">
@@ -22,25 +16,18 @@ Card of a random recipe
                 </div>
             </div>
         </div>
-
     </div>
-
 </div>
 
-
 @code {
-
     // fetch from https://api.api-ninjas.com/v1/quotes?category=food
     string quote = "Loading...";
-        
     string author = "";
 
     protected override async Task OnInitializedAsync()
     {
-        QuoteData quoteData = await QuoteAPI.GetQuote();
+        var quoteData = await QuoteAPI.GetQuote();
         quote = quoteData.Quote;
         author = quoteData.Author;
     }
-
-
 }

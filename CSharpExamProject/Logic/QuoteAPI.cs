@@ -32,8 +32,6 @@ public class QuoteAPI
                 Console.WriteLine(res.ToString());
                 quote = res[0];
             }
-            
-
         }
         catch (Exception e)
         {

@@ -1,68 +1,72 @@
-﻿// See https://aka.ms/new-console-template for more information
-
-using MyRecipesLib.Logic;
+﻿using System;
 using MyRecipesLib.Model;
 using MyRecipesLib.Repository;
 
-
-// Method that prints a recipe in a more readable way using different colors for each section
-static void PrintRecipe(Recipe recipe)
+class Program
 {
-    Console.ForegroundColor = ConsoleColor.Green;
-    Console.WriteLine(recipe.Title);
-    Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine(recipe.Description);
-    Console.WriteLine($"Preparation time: {recipe.PreparationTime} minutes");
-    Console.WriteLine($"Cooking time: {recipe.CookingTime} minutes");
-
-    Console.ForegroundColor = ConsoleColor.Yellow;
-    Console.WriteLine("Ingredients:");
-
-    foreach (var ingredient in recipe.Ingredients)
-        Console.WriteLine($"- {ingredient.Quantity} {ingredient.Unit} {ingredient.Name}");
-
-    Console.ForegroundColor = ConsoleColor.White;
-    Console.WriteLine("Steps:");
-    foreach (var step in recipe.Steps) Console.WriteLine($"- {step.Content}");
-
-    Console.WriteLine();
-}
-
-
-IRecipeRepository recipeRepository = new LocalRecipeRepository();
-
-foreach (var recipe in recipeRepository.Recipes())
-{
-    // PrintRecipe(recipe);
-}
-
-// Can the user make hot water with the ingredients they have? They don't have a kettle
-
-RecipeAssistant recipeAssistant = new(recipeRepository);
-
-var recipes = recipeAssistant.FindRecipesByIngredients(new List<Ingredient>
-{
-    new()
+    static void Main(string[] args)
     {
-        Id = "water",
-        Name = "Water",
-        Quantity = 250,
-        Unit = "ml"
-    },
-    new()
-    {
-        Id = "cup",
-        Name = "Cup",
-        Quantity = 1,
-        Unit = "piece"
-    },
-    new()
-    {
-        Id = "kettle",
-        Name = "Kettle",
-        Quantity = 1,
-        Unit = "piece"
+        var repo = new LocalRecipeRepository();
+        
+        if (args.Length == 0)
+        {
+            Console.WriteLine("Please enter a command.");
+            return;
+        }
+
+        var command = args[0];
+
+        switch (command)
+        {
+            case "add":
+                if (args.Length < 3)
+                {
+                    Console.WriteLine("Please provide the title and description for the recipe.");
+                    return;
+                }
+                var newRecipe = new Recipe { Title = args[1], Description = args[2] };
+                repo.Add(newRecipe);
+                Console.WriteLine($"Added recipe: {newRecipe.Title}");
+                break;
+                
+            case "edit":
+                if (args.Length < 3)
+                {
+                    Console.WriteLine("Please provide the ID and new title of the recipe to edit.");
+                    return;
+                }
+                var recipeToEdit = repo.Get(args[1]);
+                if (recipeToEdit == null)
+                {
+                    Console.WriteLine($"Could not find a recipe with ID {args[1]}");
+                    return;
+                }
+                recipeToEdit.Title = args[2];
+                repo.Update(recipeToEdit);
+                Console.WriteLine($"Updated recipe: {recipeToEdit.Title}");
+                break;
+
+            case "delete":
+                if (args.Length < 2)
+                {
+                    Console.WriteLine("Please provide the ID of the recipe to delete.");
+                    return;
+                }
+                repo.Remove(args[1]);
+                Console.WriteLine($"Deleted recipe: {args[1]}");
+                break;
+
+            case "list":
+                var recipes = repo.Recipes();
+                foreach (var recipe in recipes)
+                {
+                    Console.WriteLine($"{recipe.Id}: {recipe.Title}");
+                }
+                break;
+
+            default:
+                Console.WriteLine($"Unrecognized command: {command}");
+                break;
+        }
     }
-});
-
-foreach (var recipe in recipes) PrintRecipe(recipe);
+}
